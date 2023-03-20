@@ -14,7 +14,7 @@ def VolumeIncrease():
     if currentVolumeDb + 0.75 >= 0:
         currentVolumeDb = 0
     else:
-        currentVolumeDb += 3
+        currentVolumeDb += 1
     volume.SetMasterVolumeLevel(currentVolumeDb, None)
 
 # Code for Volume Decrease
@@ -29,9 +29,14 @@ def VolumeDecrease():
 
 # Code for Volume Mute
 def VolumeMute():
-    volume.SetMute(0, None)
-
-
+    #volume.SetMute(0, None)
+    currentVolumeDb = volume.GetMasterVolumeLevel()
+    currentVolumeDb = -65.25
+    volume.SetMasterVolumeLevel(currentVolumeDb, None)
+def UnMute():
+    currentVolumeDb = volume.GetMasterVolumeLevel()
+    currentVolumeDb = -60.0
+    volume.SetMasterVolumeLevel(currentVolumeDb, None)
 
 def VOLUME(vol):
     if(vol == 1):
@@ -57,13 +62,3 @@ def VOLUME(vol):
 devices = AudioUtilities.GetSpeakers()
 interface = devices.Activate( IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
 volume = cast(interface, POINTER(IAudioEndpointVolume))
-while(True):
-    inp = int(input("1 for up and 2 for down 3 for exit"))
-    if(inp == 1):
-        VolumeIncrease()
-    if(inp == 2):
-        VolumeDecrease()
-    if(inp == 4):
-        VolumeMute()
-    if(inp == 3):
-        break

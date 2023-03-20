@@ -1,51 +1,27 @@
-# Python program to translate
-# speech to text and text to speech
-
-
 import speech_recognition as sr
-import pyttsx3
 
-# Initialize the recognizer
-r = sr.Recognizer()
+recognizer = sr.Recognizer()
+#while(True):
+def SpeechToText():
+    with sr.Microphone() as source:
+        print("Adjusting noise ")
+        recognizer.adjust_for_ambient_noise(source, duration=1)
+        print("Recording for 4 seconds")
+        recorded_audio = recognizer.listen(source, timeout=4)
+        print("Done recording")
 
-# Function to convert text to
-# speech
-def SpeakText(command):
-	
-	# Initialize the engine
-	engine = pyttsx3.init()
-	engine.say(command)
-	engine.runAndWait()
-	
-	
-# Loop infinitely for user to
-# speak
+    try:
+        print("Recognizing the text")
+        text = recognizer.recognize_google(
+                recorded_audio, 
+                language="en-US"
+            )
 
-while(1):
-	
-	# Exception handling to handle
-	# exceptions at the runtime
-	try:
-		# use the microphone as source for input.
-		with sr.Microphone() as source2:
-			
-			# wait for a second to let the recognizer
-			# adjust the energy threshold based on
-			# the surrounding noise level
-			r.adjust_for_ambient_noise(source2, duration=0.2)
-			
-			#listens for the user's input
-			audio2 = r.listen(source2)
-			
-			# Using google to recognize audio
-			MyText = r.recognize_google(audio2)
-			MyText = MyText.lower()
+        print("Decoded Text : {}".format(text))
+        return format(text)
 
-			print("Did you say ",MyText)
-			SpeakText(MyText)
-			
-	except sr.RequestError as e:
-		print("Could not request results; {0}".format(e))
-		
-	except sr.UnknownValueError:
-		print("unknown error occurred")
+    except Exception as ex:
+
+        print(ex)
+    sr.Microphone.list_microphone_names()
+    
