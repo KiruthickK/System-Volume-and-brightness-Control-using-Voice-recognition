@@ -1,5 +1,5 @@
 # System-Volume-and-brightness-Control-using-Voice-recognition
-dependencies
+dependencies<br>
 pip install speechrecognition<br>
 pip install pyttsx3<br>
 pip install screen_brightness_control<br>
