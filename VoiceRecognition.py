@@ -17,7 +17,7 @@ def SpeechToText():
                 language="en-US"
             )
 
-        print("Decoded Text : {}".format(text))
+        #print("Decoded Text : {}".format(text))
         return format(text)
 
     except Exception as ex:

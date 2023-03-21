@@ -24,66 +24,69 @@ while(True):
     if(text is None):
         continue
     text = text.lower()
-    print("Received in main:"+text)
+    print("Command Received in main:"+text)
     if(text in start):
         V_OP.speech("Service starting")
         flag = True
+        continue
     if(text in stopCode):
         V_OP.speech("Thank you for using our service. use again!")
         exit()
-    else:
-        print("Listenening but not recognition")
+    if(not flag):
+        print("Listenening but not recognising")
     if(flag):
-        print("Service running")
+        print("Service running...")
         if(text in IncreaseVolume ):#(text == "increase"):
             VC.VolumeIncrease()
             V_OP.speech("volume Increased")
-            print("Increased the volume")
-        if(text in DecreaseVolume):
+            # print("Increased the volume")
+        elif(text in DecreaseVolume):
             VC.VolumeDecrease()
             V_OP.speech("volume Decreased")     
-        if(text in VolumeMute):
+        elif(text in VolumeMute):
             V_OP.speech("System Volume is going to get muted!")
             VC.VolumeMute()
-        if(text in VolumeUnMute):
+        elif(text in VolumeUnMute):
             VC.UnMute()
             V_OP.speech("volume Unmuted!")
-        if(text in HalfVolume):
+        elif(text in HalfVolume):
             VC.VolumeHalf()
             V_OP.speech("volume set to half level!")
         
         #for brightness
-        if(text in IncreaseBrightness):
+        elif(text in IncreaseBrightness):
             # VC.VolumeIncrease()
             # print("here")
             # V_OP.speech("Increased")
-            print("Brightness increased")
+            # print("Brightness increased")
             # print("Increased the volume")
             BC.BrightnessIncrease()
             V_OP.speech("Brightness Increased")
-        if(text in DecreaseBrightness):
+        elif(text in DecreaseBrightness):
             # VC.VolumeDecrease()
             BC.BrightnessDecrease()
             V_OP.speech("Brightness decreased")
             # V_OP.speech("Decreased") 
-        if(text in FullBrightness):
+        elif(text in FullBrightness):
             BC.BrightnessFull()
             V_OP.speech("Brightness set to maximum")
-        if(text in FullLowBrightness):
+        elif(text in FullLowBrightness):
             BC.BrightnessFullLow()
             V_OP.speech("Brightness set to minimum")
-        if(text in BrightnessHalf):
+        elif(text in BrightnessHalf):
             BC.BrightnessHalf()
             V_OP.speech("Brightness set to half level!")
 
         #for stopping services and code
-        if(text in Stop):
+        elif(text in Stop):
             flag = False
             V_OP.speech("Service stopping, until you start again")
             # exit()
-        if(text in stopCode):
+        elif(text in stopCode):
             V_OP.speech("Thank you for using our service. use again!")
             exit()
+        else:
+            V_OP.speech("Check your voice command. Did you just said "+text+"?")
     
         
     
