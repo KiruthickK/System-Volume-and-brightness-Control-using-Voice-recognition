@@ -13,7 +13,7 @@ IncreaseBrightness = ["increase the brightness","turn up the brightness","increa
 DecreaseBrightness = ["decrease the brightness","turn down the brightness","decrease brightness"]
 FullBrightness = ["set the maximum brightness","turn up the brightness to maximum","maximum brightness","full brightness"]
 FullLowBrightness = ["set the minimum brightness","turn down the brightness to minimum","minimum brightness","full low brightness"]
-HalfVolume = ["half the volume","set volume to half"]
+HalfVolume = ["half the volume","set volume to half","half volume"]
 BrightnessHalf = ["half the brightness","set brightness to half"]
 Stop = ["stop","top","close the service","end the service"]
 start = ["start","start services"]
@@ -28,6 +28,8 @@ while(True):
     if(text in start):
         V_OP.speech("Service starting")
         flag = True
+    if(text in stopCode):
+        V_OP.speech("Thank you for using our service. use again!")
     else:
         print("Listenening but not recognition")
     if(flag):
@@ -47,7 +49,7 @@ while(True):
             V_OP.speech("volume Unmuted!")
         if(text in Stop):
             flag = False
-            V_OP.speech("Thank you for using our service. use again!")
+            V_OP.speech("Service stopping, until you start again")
             # exit()
         
         #for brightness
