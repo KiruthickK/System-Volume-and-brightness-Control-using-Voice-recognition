@@ -4,6 +4,7 @@ import VolumeControl as VC
 import BrightnessControl as BC
 import SpeechCommandDataset as DS
 
+#driver program to run this project/application
 flag = False
 while(True):
     text = VR.SpeechToText()
