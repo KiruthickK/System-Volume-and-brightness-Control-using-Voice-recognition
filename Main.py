@@ -48,13 +48,9 @@ while(True):
         if(text in VolumeUnMute):
             VC.UnMute()
             V_OP.speech("volume Unmuted!")
-        if(text in Stop):
-            flag = False
-            V_OP.speech("Service stopping, until you start again")
-            # exit()
-        if(text in stopCode):
-            V_OP.speech("Thank you for using our service. use again!")
-            exit()
+        if(text in HalfVolume):
+            VC.VolumeHalf()
+            V_OP.speech("volume set to half level!")
         
         #for brightness
         if(text in IncreaseBrightness):
@@ -76,8 +72,18 @@ while(True):
         if(text in FullLowBrightness):
             BC.BrightnessFullLow()
             V_OP.speech("Brightness set to minimum")
+        if(text in BrightnessHalf):
+            BC.BrightnessHalf()
+            V_OP.speech("Brightness set to half level!")
 
-    
+        #for stopping services and code
+        if(text in Stop):
+            flag = False
+            V_OP.speech("Service stopping, until you start again")
+            # exit()
+        if(text in stopCode):
+            V_OP.speech("Thank you for using our service. use again!")
+            exit()
     
         
     
