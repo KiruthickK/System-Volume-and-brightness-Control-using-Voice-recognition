@@ -30,6 +30,7 @@ while(True):
         flag = True
     if(text in stopCode):
         V_OP.speech("Thank you for using our service. use again!")
+        exit()
     else:
         print("Listenening but not recognition")
     if(flag):
@@ -51,6 +52,9 @@ while(True):
             flag = False
             V_OP.speech("Service stopping, until you start again")
             # exit()
+        if(text in stopCode):
+            V_OP.speech("Thank you for using our service. use again!")
+            exit()
         
         #for brightness
         if(text in IncreaseBrightness):
