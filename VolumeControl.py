@@ -11,8 +11,14 @@ import math
 def VolumeIncrease():
     #print("VolINC")
     currentVolumeDb = volume.GetMasterVolumeLevel()
-    if currentVolumeDb + 0.75 >= 0:
+    if currentVolumeDb + 1 >= 0:
         currentVolumeDb = 0
+    elif currentVolumeDb < -50:
+        currentVolumeDb = -50
+    elif currentVolumeDb <-20:
+        currentVolumeDb += 10
+    elif currentVolumeDb < -5:
+        currentVolumeDb += 5
     else:
         currentVolumeDb += 1
     volume.SetMasterVolumeLevel(currentVolumeDb, None)
@@ -21,10 +27,12 @@ def VolumeIncrease():
 def VolumeDecrease():
     #print("VolDEC")
     currentVolumeDb = volume.GetMasterVolumeLevel()
-    if currentVolumeDb - 0.25 <= -65.25:
+    if currentVolumeDb - 10 <= -65.25:
         currentVolumeDb = -65.25
+    elif currentVolumeDb < -20:
+        currentVolumeDb -= 10
     else:
-        currentVolumeDb -= 0.75
+        currentVolumeDb -= 1
     volume.SetMasterVolumeLevel(currentVolumeDb, None)
 
 # Code for Volume Mute
@@ -35,30 +43,19 @@ def VolumeMute():
     volume.SetMasterVolumeLevel(currentVolumeDb, None)
 def UnMute():
     currentVolumeDb = volume.GetMasterVolumeLevel()
-    currentVolumeDb = -60.0
+    currentVolumeDb = 0.0
     volume.SetMasterVolumeLevel(currentVolumeDb, None)
-
-def VOLUME(vol):
-    if(vol == 1):
-        VolumeIncrease()
-        #speech("Volume is increased")
-        print("Volume is increased")
-    elif(vol == 3):
-        VolumeDecrease()
-        #speech("Volume is Decreased")
-        print("Volume is Decreased")
-    # elif(vol == 2):
-    #     BrightnessIncrease()
-    #     #speech("Brightness is increased")
-    #     print("Brightness is increased")
-    # elif(vol == 4):
-    #     BrightnessDecrease()
-        #speech("Brightness is Decreased")
-        print("Brightness is Decreased")
-    elif(vol == 5):
-        VolumeMute()
-        print("Muted")
+def VolumeHalf():
+    currentVolumeDb = volume.GetMasterVolumeLevel()
+    currentVolumeDb = -6.0
+    volume.SetMasterVolumeLevel(currentVolumeDb, None)
 
 devices = AudioUtilities.GetSpeakers()
 interface = devices.Activate( IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
 volume = cast(interface, POINTER(IAudioEndpointVolume))
+
+
+#tests
+# VolumeIncrease()
+# currentVolumeDb = volume.GetMasterVolumeLevel()
+# print(currentVolumeDb)
