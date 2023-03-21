@@ -47,7 +47,7 @@ def UnMute():
     volume.SetMasterVolumeLevel(currentVolumeDb, None)
 def VolumeHalf():
     currentVolumeDb = volume.GetMasterVolumeLevel()
-    currentVolumeDb = -6.0
+    currentVolumeDb = -10.4
     volume.SetMasterVolumeLevel(currentVolumeDb, None)
 
 devices = AudioUtilities.GetSpeakers()
@@ -59,3 +59,4 @@ volume = cast(interface, POINTER(IAudioEndpointVolume))
 # VolumeIncrease()
 # currentVolumeDb = volume.GetMasterVolumeLevel()
 # print(currentVolumeDb)
+VolumeHalf()
