@@ -36,6 +36,9 @@ while(True):
         elif(text in DS.VolumeUnMute):
             VC.UnMute()
             V_OP.speech(text+" Done successfully!")
+        elif(text in DS.FullVolume):
+            VC.VolumeFull()
+            V_OP.speech("volume set to maximum level")
         elif(text in DS.HalfVolume):
             VC.VolumeHalf()
             V_OP.speech("volume set to half level!")

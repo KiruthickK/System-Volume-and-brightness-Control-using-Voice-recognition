@@ -6,7 +6,8 @@ from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 #for brightness
 
-
+#for storing volume level for recovering volume level for unmuting
+VolumeLevelWhileMuting = 0.0
 def VolumeIncrease():
     #print("VolINC")
     currentVolumeDb = volume.GetMasterVolumeLevel()
@@ -34,16 +35,21 @@ def VolumeDecrease():
         currentVolumeDb -= 1
     volume.SetMasterVolumeLevel(currentVolumeDb, None)
 
-# Code for Volume Mute
+# Code for Volume Mute, unmute and maximum volume
 def VolumeMute():
     #volume.SetMute(0, None)
-    currentVolumeDb = volume.GetMasterVolumeLevel()
+    global VolumeLevelWhileMuting
+    VolumeLevelWhileMuting = volume.GetMasterVolumeLevel()
     currentVolumeDb = -65.25
     volume.SetMasterVolumeLevel(currentVolumeDb, None)
-def UnMute():
+def VolumeFull():
     currentVolumeDb = volume.GetMasterVolumeLevel()
     currentVolumeDb = 0.0
     volume.SetMasterVolumeLevel(currentVolumeDb, None)
+def UnMute():
+    # currentVolumeDb = volume.GetMasterVolumeLevel()
+    # currentVolumeDb = 0.0
+    volume.SetMasterVolumeLevel(VolumeLevelWhileMuting, None)
 def VolumeHalf():
     currentVolumeDb = volume.GetMasterVolumeLevel()
     currentVolumeDb = -10.4
@@ -58,4 +64,3 @@ volume = cast(interface, POINTER(IAudioEndpointVolume))
 # VolumeIncrease()
 # currentVolumeDb = volume.GetMasterVolumeLevel()
 # print(currentVolumeDb)
-VolumeHalf()
