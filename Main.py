@@ -6,7 +6,6 @@ import SpeechCommandDataset as DS
 
 #driver program to run this project/application
 FlagForServiceStart = False
-# FlagForConfirmation = False
 
 while(True):
     text = VR.SpeechToText()
@@ -16,7 +15,7 @@ while(True):
     text = text.lower()
     print("Command Received in main:"+text)
     if(text in DS.start):
-        V_OP.speech("Service starting. Listening for voice commmand")
+        V_OP.speech("Service starting. Listening for voice command")
         FlagForServiceStart = True
         continue
     if(text in DS.stopCode):
@@ -101,5 +100,5 @@ while(True):
                 text = VR.SpeechToText()
             continue
         else:
-            V_OP.speech("Check your voice command, Did you just said "+text+"?")
-            print("Check your voice command, Did you just said "+text+"?") 
+            V_OP.speech("Check your voice command. Did you just said "+text+"?")
+            print("Check your voice command. Did you just said "+text+"?") 
