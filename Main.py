@@ -33,7 +33,7 @@ while(True):
                 FlagForServiceStart = True
                 break
             else:
-                V_OP.speech("please confirm."+ confirmation)
+                V_OP.speech("please confirm. "+ confirmation)
             text = VR.SpeechToText()
         continue
     if(not FlagForServiceStart):
@@ -92,13 +92,25 @@ while(True):
                     V_OP.speech("Thank you for using our service. use again!")
                     exit()
                 elif(text in DS.No):
+                    # print("Listening for voice command")
                     V_OP.speech("Listening for voice command")
                     FlagForServiceStart = True
                     break
                 else:
-                    V_OP.speech("Please confirm"+confirmation)
+                    # print("Please confirm. "+confirmation)
+                    V_OP.speech("Please confirm. "+confirmation)
                 text = VR.SpeechToText()
             continue
         else:
+            # print("Check your voice command. Did you just said "+text+"?") 
             V_OP.speech("Check your voice command. Did you just said "+text+"?")
-            print("Check your voice command. Did you just said "+text+"?") 
+            matches = DS.MatchCommand(text)
+            # print("Do you mean ")
+            V_OP.speech("Do you mean ")
+            for i in range(0,len(matches)):
+                MediateText = (i == len(matches) - 1) and "." or ". or"
+                V_OP.speech(matches[i] + MediateText)
+                # print(matches[i] + MediateText)
+            # print("If you said anything by mistake or you are talking to someone else, you can simply pause this program by saying 'pause' or 'stop'")
+            V_OP.speech("If you said anything by mistake or you are talking to someone else, you can simply pause this program by saying 'pause' or 'stop'")
+                
