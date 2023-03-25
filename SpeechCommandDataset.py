@@ -1,6 +1,8 @@
 #speech commands dataset, represented by python lists
-IncreaseVolume = ["increase the volume","turn up the volume","increase volume","increase sound","i need more sound"]
-VolumeMute = ["mute the volume","mute","mute volume","mute sound","no sound"]
+IncreaseVolume = ["increase the volume","turn up the volume","increase volume","increase sound","i need more sound",
+                  "i need more volume"]
+VolumeMute = ["mute the volume","mute","mute volume","mute sound","no sound","no volume",
+              "i want no volume","i want to mute my speakers","i want to mute my system volume"]
 VolumeUnMute = ["unmute the volume","unmute","unmute volume","enable sound","enable volume",
                 "unmute the sound","unmute sound"]
 FullVolume = ["full volume","set volume to full","set volume to maximum",

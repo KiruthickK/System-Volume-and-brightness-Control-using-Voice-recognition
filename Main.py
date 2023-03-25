@@ -5,7 +5,9 @@ import BrightnessControl as BC
 import SpeechCommandDataset as DS
 
 #driver program to run this project/application
-flag = False
+FlagForServiceStart = False
+FlagForConfirmation = False
+
 while(True):
     text = VR.SpeechToText()
     if(text is None):
@@ -13,15 +15,28 @@ while(True):
     text = text.lower()
     print("Command Received in main:"+text)
     if(text in DS.start):
-        V_OP.speech("Service starting")
-        flag = True
+        V_OP.speech("Service starting. Listening for voice commmand")
+        FlagForServiceStart = True
         continue
     if(text in DS.stopCode):
-        V_OP.speech("Thank you for using our service. use again!")
-        exit()
-    if(not flag):
+        # V_OP.speech("Thank you for using our service. use again!")
+        # exit()
+        confirmation = "Do you really want to stop this program?"
+        text = VR.SpeechToText()
+        V_OP.speech(confirmation)
+        while(True):
+            if(text in DS.Yes):
+                V_OP.speech("Thank you for using our service. use again!")
+                exit()
+            elif(text in DS.No):
+                V_OP.speech("Listening for voice commmand")
+                break
+            else:
+                V_OP.speech(confirmation)
+            text = VR.SpeechToText()
+    if(not FlagForServiceStart):
         print("Listenening but not recognising")
-    if(flag):
+    if(FlagForServiceStart):
         print("Service running...")
         if(text in DS.IncreaseVolume ):#(text == "increase"):
             VC.VolumeIncrease()
@@ -62,12 +77,22 @@ while(True):
 
         #for stopping services and code
         elif(text in DS.Stop):
-            flag = False
+            FlagForServiceStart = False
             V_OP.speech("Service stopping, until you start again")
         elif(text in DS.stopCode):
-            V_OP.speech("Thank you for using our service. use again!")
-            exit()
+            confirmation = "Do you really want to stop this program?"
+            V_OP.speech(confirmation)
+            text = VR.SpeechToText()
+            while(True):
+                if(text in DS.Yes):
+                    V_OP.speech("Thank you for using our service. use again!")
+                    exit()
+                elif(text in DS.No):
+                    V_OP.speech("Listening for voice commmand")
+                    break
+                else:
+                    V_OP.speech(confirmation)
+                text = VR.SpeechToText()
         else:
             V_OP.speech("Check your voice command. Did you just said "+text+"?")
-            print("Check your voice command. Did you just said "+text+"?")
-    
+            print("Check your voice command. Did you just said "+text+"?") 
