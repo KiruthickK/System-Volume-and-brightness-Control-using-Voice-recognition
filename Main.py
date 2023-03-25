@@ -6,11 +6,12 @@ import SpeechCommandDataset as DS
 
 #driver program to run this project/application
 FlagForServiceStart = False
-FlagForConfirmation = False
+# FlagForConfirmation = False
 
 while(True):
     text = VR.SpeechToText()
     if(text is None):
+        print("Empty text....")
         continue
     text = text.lower()
     print("Command Received in main:"+text)
@@ -22,18 +23,20 @@ while(True):
         # V_OP.speech("Thank you for using our service. use again!")
         # exit()
         confirmation = "Do you really want to stop this program?"
-        text = VR.SpeechToText()
         V_OP.speech(confirmation)
+        text = VR.SpeechToText()
         while(True):
             if(text in DS.Yes):
                 V_OP.speech("Thank you for using our service. use again!")
                 exit()
             elif(text in DS.No):
-                V_OP.speech("Listening for voice commmand")
+                V_OP.speech("Listening for voice command")
+                FlagForServiceStart = True
                 break
             else:
-                V_OP.speech(confirmation)
+                V_OP.speech("please confirm."+ confirmation)
             text = VR.SpeechToText()
+        continue
     if(not FlagForServiceStart):
         print("Listenening but not recognising")
     if(FlagForServiceStart):
@@ -79,6 +82,8 @@ while(True):
         elif(text in DS.Stop):
             FlagForServiceStart = False
             V_OP.speech("Service stopping, until you start again")
+
+        #receiving confirmation and then terminating the program
         elif(text in DS.stopCode):
             confirmation = "Do you really want to stop this program?"
             V_OP.speech(confirmation)
@@ -88,11 +93,13 @@ while(True):
                     V_OP.speech("Thank you for using our service. use again!")
                     exit()
                 elif(text in DS.No):
-                    V_OP.speech("Listening for voice commmand")
+                    V_OP.speech("Listening for voice command")
+                    FlagForServiceStart = True
                     break
                 else:
-                    V_OP.speech(confirmation)
+                    V_OP.speech("Please confirm"+confirmation)
                 text = VR.SpeechToText()
+            continue
         else:
-            V_OP.speech("Check your voice command. Did you just said "+text+"?")
-            print("Check your voice command. Did you just said "+text+"?") 
+            V_OP.speech("Check your voice command, Did you just said "+text+"?")
+            print("Check your voice command, Did you just said "+text+"?") 
