@@ -27,10 +27,16 @@ def VolumeIncrease():
 def VolumeDecrease():
     #print("VolDEC")
     currentVolumeDb = volume.GetMasterVolumeLevel()
-    if currentVolumeDb - 10 <= -65.25:
+    if currentVolumeDb - 15 <= -65.25:
         currentVolumeDb = -65.25
-    elif currentVolumeDb < -20:
+    elif currentVolumeDb > -5:
+        currentVolumeDb -= 1
+    elif currentVolumeDb > -20:
+        currentVolumeDb -= 5
+    elif currentVolumeDb <= -20 and currentVolumeDb > -50:
         currentVolumeDb -= 10
+    elif currentVolumeDb <= -50 and currentVolumeDb > -60:
+        currentVolumeDb -= 15
     else:
         currentVolumeDb -= 1
     volume.SetMasterVolumeLevel(currentVolumeDb, None)

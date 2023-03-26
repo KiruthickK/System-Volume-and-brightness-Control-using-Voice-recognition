@@ -11,7 +11,8 @@ DecreaseVolume = ["decrease the volume","turn down the volume","decrease volume"
                   "decrease the volume level","decrease volume level","make it quieter","lower the volume",
                   "make the sound quieter"]
 VolumeMute = ["mute the volume","mute","mute volume","mute sound","no sound","no volume",
-              "i want no volume","i want to mute my speakers","i want to mute my system volume"]
+              "i want no volume","i want to mute my speakers","i want to mute my system volume",
+              "minimum volume"]
 VolumeUnMute = ["unmute the volume","unmute","unmute volume","enable sound","enable volume",
                 "unmute the sound","unmute sound"]
 FullVolume = ["full volume","set volume to full","set volume to maximum","set volume full",

@@ -6,7 +6,10 @@ import SpeechCommandDataset as DS
 
 #driver program to run this project/application
 FlagForServiceStart = False
-
+print("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=")
+V_OP.speech("Welcome to system volume and brightness controller using voice commands. simply VoiceBot. Say 'start' to start services to listen to your voice commands, then start giving your voice commands..")
+V_OP.speech("You can say 'stop' to pause the services for a while, and you can say 'exit' to terminate this program.\n")
+print("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=")
 while(True):
     text = VR.SpeechToText()
     if(text is None):
@@ -27,6 +30,7 @@ while(True):
         while(True):
             if(text in DS.Yes):
                 V_OP.speech("Thank you for using our service. use again!")
+                print("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=")
                 exit()
             elif(text in DS.No):
                 V_OP.speech("Listening for voice command")
@@ -37,7 +41,7 @@ while(True):
             text = VR.SpeechToText()
         continue
     if(not FlagForServiceStart):
-        print("Listenening but not recognising")
+        print("Listenening but not recognising until services start again...")
     if(FlagForServiceStart):
         print("Service running...")
         if(text in DS.IncreaseVolume ):#(text == "increase"):
@@ -90,6 +94,7 @@ while(True):
             while(True):
                 if(text in DS.Yes):
                     V_OP.speech("Thank you for using our service. use again!")
+                    print("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=")
                     exit()
                 elif(text in DS.No):
                     # print("Listening for voice command")
@@ -106,9 +111,10 @@ while(True):
             V_OP.speech("Check your voice command. Did you just said "+text+"?")
             matches = DS.MatchCommand(text)
             # print("Do you mean ")
-            V_OP.speech("Do you mean ")
+            if(len(matches) != 0):
+                V_OP.speech("Do you mean ")
             for i in range(0,len(matches)):
-                MediateText = (i == len(matches) - 1) and "." or ". or"
+                MediateText = (i == len(matches) - 1) and "." or ", or"
                 V_OP.speech(matches[i] + MediateText)
                 # print(matches[i] + MediateText)
             # print("If you said anything by mistake or you are talking to someone else, you can simply pause this program by saying 'pause' or 'stop'")
