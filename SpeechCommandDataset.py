@@ -27,7 +27,9 @@ IncreaseBrightness = ["increase the brightness","turn up the brightness","increa
 DecreaseBrightness = ["decrease the brightness","turn down the brightness","decrease brightness","low brightness",
                       "lower the brightness","reduce the brightness","reduce the brightness level",
                       "decrease the brightness level","decrease brightness level","reduce brightness level",
-                      "decrease screen brightness","decrease screen brightness level"]
+                      "decrease screen brightness","decrease screen brightness level",
+                      "reduce brightness","reduce the brightness","reduce the screen brightness",
+                      "reduce screen brightness"]
 FullBrightness = ["set the maximum brightness","turn up the brightness to maximum","maximum brightness",
                   "set brightness to full","full brightness","set full brightness","set maximum brightness",
                   "set brightness to maximum level"]

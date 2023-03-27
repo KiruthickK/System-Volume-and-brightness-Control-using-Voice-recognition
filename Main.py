@@ -37,6 +37,7 @@ while(True):
                 FlagForServiceStart = True
                 break
             else:
+                print("Empty text....")
                 V_OP.speech("please confirm. "+ confirmation)
             text = VR.SpeechToText()
         continue
