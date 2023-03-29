@@ -7,6 +7,7 @@ def BrightnessIncrease():
     current_brightness = sbc.get_brightness()
     if(current_brightness[0] == 100):
         V_OP.speech("Brightness is already at its maximum level!")
+        return
     if((current_brightness[0] + 10) >= 100):
         current_brightness[0] = 100
     else:
@@ -19,6 +20,7 @@ def BrightnessDecrease():
     current_brightness = sbc.get_brightness()
     if(current_brightness[0] == 0):
         V_OP.speech("Brightness is already at its minimum level!")
+        return
     if((current_brightness[0] - 10) <= 10):
         current_brightness[0] = 0
     else:
@@ -29,17 +31,20 @@ def BrightnessHalf():
     current_brightness = sbc.get_brightness()
     if(current_brightness[0] == 50):
         V_OP.speech("Brightness is already at its half level!")
+        return
     current_brightness[0] = 50
     sbc.set_brightness(current_brightness[0])
 def BrightnessFull():
     current_brightness = sbc.get_brightness()
     if(current_brightness[0] == 100):
         V_OP.speech("Brightness is already at its maximum level!")
+        return
     current_brightness[0] = 100
     sbc.set_brightness(current_brightness[0])
 def BrightnessFullLow():
     if(current_brightness[0] == 0):
         V_OP.speech("Brightness is already at its minimum level!")
+        return
     current_brightness = sbc.get_brightness()
     current_brightness[0] = 0
     sbc.set_brightness(current_brightness[0])
