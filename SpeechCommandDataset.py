@@ -46,7 +46,10 @@ stopCode = ["exit code","stop the program","exit","exit program","close the serv
             "terminate the program","exit the program"]
 Yes = ["yes","yes stop the service","yes end the service","yes stop the program","yeah i want","yeah"]
 No = ["no","i said by mistake","no i dont want","no i said by mistake","no i said by mistake sorry","nope"]
-
+C_Bri_Level = ["tell me the current brightness level","current brightness level","tell the brightness level",
+               "tell brightness level","tell me the current brightness","current brightness"]
+C_Vol_Level = ["tell me the current volume level","current volume level","tell the volume level",
+               "tell volume level","tell me the current volume","current volume"]
 # for matching the input voice command with matching voice command in dataset
 lists = [IncreaseVolume,VolumeMute,VolumeUnMute,FullVolume,DecreaseVolume,IncreaseBrightness,DecreaseBrightness,
          FullBrightness,FullLowBrightness,HalfVolume,BrightnessHalf,Stop,start,stopCode,Yes,No]

@@ -7,11 +7,13 @@ import UsabilityHelpers as UH
 
 #driver program to run this project/application
 FlagForServiceStart = False
-FlagForPrintServiceRunning = False
+FlagForPrintServiceRunning = True
 # print("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=")
 UH.DesignPrinter()
-V_OP.speech("Welcome to system volume and brightness controller using voice commands. simply VoiceBot. Say 'start' to start services to listen to your voice commands, then start giving your voice commands..")
-V_OP.speech("You can say 'stop' to pause the services for a while, and you can say 'exit' to terminate this program.\n")
+V_OP.speech("Welcome to system volume and brightness controller using voice commands. You can say 'A voice assistant for controlling system volume and brightness'.")
+V_OP.speech("Say 'start' to start services to listen to your voice commands, then start giving your voice commands to make adjustments with the system volume and brightness.")
+V_OP.speech("You can ask 'current volume' or 'current brightness' to know the current volume or brightness level.")
+V_OP.speech("You can say 'stop' to pause the services for a while, and you can say 'exit' to terminate this program.")
 # print("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=")
 UH.DesignPrinter()
 while(True):
@@ -98,7 +100,11 @@ while(True):
             FlagForServiceStart = False
             FlagForPrintServiceRunning = False
             V_OP.speech("Service stopping, until you start again")
-
+        #for returning current voice and brightness level
+        elif(text in DS.C_Bri_Level):
+            BC.SayCurrentBrightnessLevel()
+        elif(text in DS.C_Vol_Level):
+            VC.SayCurrentVolume()
         #receiving confirmation and then terminating the program
         elif(text in DS.stopCode):
             confirmation = "Do you really want to stop this program?"
