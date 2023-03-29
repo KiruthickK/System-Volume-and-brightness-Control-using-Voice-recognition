@@ -4,11 +4,11 @@ recognizer = sr.Recognizer()
 #while(True):
 def SpeechToText():
     with sr.Microphone() as source:
-        print("Adjusting noise ")
+        # print("Adjusting noise ")
         recognizer.adjust_for_ambient_noise(source, duration=1)
         print("Recording for 3 seconds")
         recorded_audio = recognizer.listen(source, timeout=3,phrase_time_limit=3)
-        print("Done recording")
+        # print("Done recording")
 
     try:
         print("Recognizing the text")

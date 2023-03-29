@@ -3,20 +3,21 @@ import VoiceOutput as V_OP
 import VolumeControl as VC
 import BrightnessControl as BC
 import SpeechCommandDataset as DS
+import UsabilityHelpers as UH
 
 #driver program to run this project/application
 FlagForServiceStart = False
 print("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=")
-V_OP.speech("Welcome to system volume and brightness controller using voice commands. simply VoiceBot. Say 'start' to start services to listen to your voice commands, then start giving your voice commands..")
-V_OP.speech("You can say 'stop' to pause the services for a while, and you can say 'exit' to terminate this program.\n")
-print("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=")
+# V_OP.speech("Welcome to system volume and brightness controller using voice commands. simply VoiceBot. Say 'start' to start services to listen to your voice commands, then start giving your voice commands..")
+# V_OP.speech("You can say 'stop' to pause the services for a while, and you can say 'exit' to terminate this program.\n")
+# print("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=")
 while(True):
     text = VR.SpeechToText()
     if(text is None):
         print("Empty text....")
         continue
     text = text.lower()
-    print("Command Received in main:"+text)
+    UH.PrintRightSide("Command Received in main:"+text)
     if(text in DS.start):
         V_OP.speech("Service starting. Listening for voice command")
         FlagForServiceStart = True
