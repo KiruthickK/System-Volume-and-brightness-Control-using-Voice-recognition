@@ -97,10 +97,3 @@ def SayCurrentVolume():
         V_OP.speech("Current volume level is minus {:.2f} decibel!".format(currentVolumeDb))
     else:
         V_OP.speech("Current volume level is {:.2f} decibel!".format(currentVolumeDb))
-
-
-# tests
-# VolumeIncrease()
-# currentVolumeDb = volume.GetMasterVolumeLevel()
-# print(currentVolumeDb)
-# SayCurrentVolume()

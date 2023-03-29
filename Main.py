@@ -7,14 +7,14 @@ import UsabilityHelpers as UH
 
 #driver program to run this project/application
 FlagForServiceStart = False
-FlagForPrintServiceRunning = True
-# print("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=")
+
 UH.DesignPrinter()
-# V_OP.speech("Welcome to system volume and brightness controller using voice commands. You can say 'A voice assistant for controlling system volume and brightness'.")
-# V_OP.speech("Say 'start' to start services to listen to your voice commands, then start giving your voice commands to make adjustments with the system volume and brightness.")
-# V_OP.speech("You can ask 'current volume' or 'current brightness' to know the current volume or brightness level.")
-# V_OP.speech("You can say 'stop' to pause the services for a while, and you can say 'exit' to terminate this program.")
+V_OP.speech("Welcome to system volume and brightness controller using voice commands. You can say 'A voice assistant for controlling system volume and brightness'.")
+V_OP.speech("Say 'start' to start services to listen to your voice commands, then start giving your voice commands to make adjustments with the system volume and brightness.")
+V_OP.speech("You can ask 'current volume' or 'current brightness' to know the current volume or brightness level.")
+V_OP.speech("You can say 'stop' to pause the services for a while, and you can say 'exit' to terminate this program.")
 UH.DesignPrinter()
+V_OP.speech("Now started listening for voice commands.")
 while(True):
     text = VR.SpeechToText()
     if(text is None):
@@ -23,25 +23,22 @@ while(True):
     text = text.lower()
     UH.PrintRightSide("User:"+text)
     if(text in DS.start):
-        V_OP.speech("Service starting. Listening for voice command")
+        V_OP.speech("Service starting. Listening for voice commands")
         FlagForServiceStart = True
         continue
     if(text in DS.stopCode):
-        # V_OP.speech("Thank you for using our service. use again!")
-        # exit()
         confirmation = "Do you really want to stop this program?"
         V_OP.speech(confirmation)
-        text = VR.SpeechToText()
-        if(text is not None):
-            UH.PrintRightSide("User:"+text)
-            text = text.lower()
         while(True):
+            text = VR.SpeechToText()
             if(text is None):
                 print("Empty text...")
+                V_OP.speech("please confirm. "+ confirmation)
                 continue
+            UH.PrintRightSide("User:"+text)
+            text = text.lower()
             if(text in DS.Yes):
                 V_OP.speech("Thank you for using our service. use again!")
-                # print("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=")
                 UH.DesignPrinter()
                 exit()
             elif(text in DS.No):
@@ -49,23 +46,12 @@ while(True):
                 FlagForServiceStart = True
                 break
             else:
-                if(text is not None):
-                    text = text.lower()
-                    UH.PrintRightSide("User:"+text)
-                    V_OP.speech("please confirm. "+ confirmation)
-                else:
-                    print("Empty text...")
-                    V_OP.speech("please confirm. "+ confirmation)
-            text = VR.SpeechToText()
+                V_OP.speech("please confirm. "+ confirmation)
             
         continue
     if(not FlagForServiceStart):
         print("Listenening but not recognising until services start again...")
     if(FlagForServiceStart):
-        if(not FlagForPrintServiceRunning):
-            print("Service running...")
-            FlagForPrintServiceRunning = True
-
         #for volume control
         if(text in DS.IncreaseVolume ):
             VC.VolumeIncrease()
@@ -107,32 +93,25 @@ while(True):
         elif(text in DS.stopCode):
             confirmation = "Do you really want to stop this program?"
             V_OP.speech(confirmation)
-            text = VR.SpeechToText()
-            if(text is not None):
-                UH.PrintRightSide("User:"+text)
-                text = text.lower()
             while(True):
+                text = VR.SpeechToText()
                 if(text is None):
                     print("Empty text...")
+                    V_OP.speech("please confirm. "+ confirmation)
                     continue
+                UH.PrintRightSide("User:"+text)
+                text = text.lower()
                 if(text in DS.Yes):
                     V_OP.speech("Thank you for using our service. use again!")
-                    # print("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=")
                     UH.DesignPrinter()
                     exit()
                 elif(text in DS.No):
-                    # print("Listening for voice command")
-                    V_OP.speech("Listening for voice command")
+                    V_OP.speech("Listening for voice commands")
                     FlagForServiceStart = True
                     break
                 else:
-                    if(text is not None):
-                        text = text.lower()
-                        UH.PrintRightSide("User:"+text)
-                        V_OP.speech("please confirm. "+ confirmation)
-                    else:
-                        print("Empty text...")
-                        V_OP.speech("please confirm. "+ confirmation)
+                    V_OP.speech("please confirm. "+ confirmation)
+                
             continue
         else:
             # print("Check your voice command. Did you just said "+text+"?") 
