@@ -9,19 +9,21 @@ import UsabilityHelpers as UH
 FlagForServiceStart = False
 
 UH.DesignPrinter()
-V_OP.speech("Welcome to system volume and brightness controller using voice commands. You can say 'A voice assistant for controlling system volume and brightness'.")
+V_OP.speech("Welcome to system volume and brightness controller using voice commands, 'A voice assistant for controlling system volume and brightness'.")
 V_OP.speech("Say 'start' to start services to listen to your voice commands, then start giving your voice commands to make adjustments with the system volume and brightness.")
 V_OP.speech("You can ask 'current volume' or 'current brightness' to know the current volume or brightness level.")
 V_OP.speech("You can say 'stop' to pause the services for a while, and you can say 'exit' to terminate this program.")
 UH.DesignPrinter()
-V_OP.speech("Now started listening for voice commands.")
+V_OP.speech("Waiting for voice command to start services.")
 while(True):
     text = VR.SpeechToText()
     if(text is None):
         print("Empty text....")
         continue
     text = text.lower()
+    UH.SingleLinePrinter()
     UH.PrintRightSide("User:"+text)
+    UH.SingleLinePrinter()
     if(text in DS.start):
         V_OP.speech("Service starting. Listening for voice commands")
         FlagForServiceStart = True
@@ -35,7 +37,9 @@ while(True):
                 print("Empty text...")
                 V_OP.speech("please confirm. "+ confirmation)
                 continue
+            UH.SingleLinePrinter()
             UH.PrintRightSide("User:"+text)
+            UH.SingleLinePrinter()
             text = text.lower()
             if(text in DS.Yes):
                 V_OP.speech("Thank you for using our service. use again!")
@@ -99,7 +103,9 @@ while(True):
                     print("Empty text...")
                     V_OP.speech("please confirm. "+ confirmation)
                     continue
+                UH.SingleLinePrinter()
                 UH.PrintRightSide("User:"+text)
+                UH.SingleLinePrinter()
                 text = text.lower()
                 if(text in DS.Yes):
                     V_OP.speech("Thank you for using our service. use again!")
