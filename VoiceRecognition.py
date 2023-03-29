@@ -11,7 +11,7 @@ def SpeechToText():
         # print("Done recording")
 
     try:
-        print("Recognizing the text")
+        # print("Recognizing the text")
         text = recognizer.recognize_google(
                 recorded_audio, 
                 language="en-US"
