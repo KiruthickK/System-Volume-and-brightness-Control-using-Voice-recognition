@@ -7,6 +7,7 @@ import UsabilityHelpers as UH
 
 #driver program to run this project/application
 FlagForServiceStart = False
+FlagForPrintServiceRunning = False
 # print("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=")
 UH.DesignPrinter()
 V_OP.speech("Welcome to system volume and brightness controller using voice commands. simply VoiceBot. Say 'start' to start services to listen to your voice commands, then start giving your voice commands..")
@@ -52,7 +53,9 @@ while(True):
     if(not FlagForServiceStart):
         print("Listenening but not recognising until services start again...")
     if(FlagForServiceStart):
-        print("Service running...")
+        if(not FlagForPrintServiceRunning):
+            print("Service running...")
+            FlagForPrintServiceRunning = True
         if(text in DS.IncreaseVolume ):#(text == "increase"):
             VC.VolumeIncrease()
             V_OP.speech("volume Increased")
@@ -93,6 +96,7 @@ while(True):
         #for stopping services and code
         elif(text in DS.Stop):
             FlagForServiceStart = False
+            FlagForPrintServiceRunning = False
             V_OP.speech("Service stopping, until you start again")
 
         #receiving confirmation and then terminating the program
