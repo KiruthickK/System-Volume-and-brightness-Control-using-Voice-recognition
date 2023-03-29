@@ -34,22 +34,30 @@ while(True):
         text = VR.SpeechToText()
         if(text is not None):
             UH.PrintRightSide("User:"+text)
+            text = text.lower()
         while(True):
+            if(text is None):
+                print("Empty text...")
+                continue
             if(text in DS.Yes):
                 V_OP.speech("Thank you for using our service. use again!")
                 # print("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=")
                 UH.DesignPrinter()
                 exit()
             elif(text in DS.No):
-                V_OP.speech("Listening for voice command")
+                V_OP.speech("Listening for voice commands")
                 FlagForServiceStart = True
                 break
             else:
-                print("Empty text....")
-                V_OP.speech("please confirm. "+ confirmation)
+                if(text is not None):
+                    text = text.lower()
+                    UH.PrintRightSide("User:"+text)
+                    V_OP.speech("please confirm. "+ confirmation)
+                else:
+                    print("Empty text...")
+                    V_OP.speech("please confirm. "+ confirmation)
             text = VR.SpeechToText()
-            if(text is not None):
-                UH.PrintRightSide("User:"+text)
+            
         continue
     if(not FlagForServiceStart):
         print("Listenening but not recognising until services start again...")
@@ -57,42 +65,33 @@ while(True):
         if(not FlagForPrintServiceRunning):
             print("Service running...")
             FlagForPrintServiceRunning = True
-        if(text in DS.IncreaseVolume ):#(text == "increase"):
+
+        #for volume control
+        if(text in DS.IncreaseVolume ):
             VC.VolumeIncrease()
-            V_OP.speech("volume Increased")
             # print("Increased the volume")
         elif(text in DS.DecreaseVolume):
-            VC.VolumeDecrease()
-            V_OP.speech("volume Decreased")     
+            VC.VolumeDecrease()    
         elif(text in DS.VolumeMute):
-            V_OP.speech("System Volume is going to get muted!")
             VC.VolumeMute()
         elif(text in DS.VolumeUnMute):
-            VC.UnMute()
-            V_OP.speech(text+" Done successfully!")
+            VC.UnMute(text)
         elif(text in DS.FullVolume):
             VC.VolumeFull()
-            V_OP.speech("volume set to maximum level")
         elif(text in DS.HalfVolume):
             VC.VolumeHalf()
-            V_OP.speech("volume set to half level!")
         
         #for brightness
         elif(text in DS.IncreaseBrightness):
             BC.BrightnessIncrease()
-            V_OP.speech("Brightness Increased")
         elif(text in DS.DecreaseBrightness):
             BC.BrightnessDecrease()
-            V_OP.speech("Brightness decreased") 
         elif(text in DS.FullBrightness):
             BC.BrightnessFull()
-            V_OP.speech("Brightness set to maximum")
         elif(text in DS.FullLowBrightness):
             BC.BrightnessFullLow()
-            V_OP.speech("Brightness set to minimum")
         elif(text in DS.BrightnessHalf):
             BC.BrightnessHalf()
-            V_OP.speech("Brightness set to half level!")
 
         #for stopping services and code
         elif(text in DS.Stop):
@@ -111,7 +110,11 @@ while(True):
             text = VR.SpeechToText()
             if(text is not None):
                 UH.PrintRightSide("User:"+text)
+                text = text.lower()
             while(True):
+                if(text is None):
+                    print("Empty text...")
+                    continue
                 if(text in DS.Yes):
                     V_OP.speech("Thank you for using our service. use again!")
                     # print("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=")
@@ -123,11 +126,13 @@ while(True):
                     FlagForServiceStart = True
                     break
                 else:
-                    # print("Please confirm. "+confirmation)
-                    V_OP.speech("Please confirm. "+confirmation)
-                text = VR.SpeechToText()
-                if(text is not None):
-                    UH.PrintRightSide("User:"+text)
+                    if(text is not None):
+                        text = text.lower()
+                        UH.PrintRightSide("User:"+text)
+                        V_OP.speech("please confirm. "+ confirmation)
+                    else:
+                        print("Empty text...")
+                        V_OP.speech("please confirm. "+ confirmation)
             continue
         else:
             # print("Check your voice command. Did you just said "+text+"?") 

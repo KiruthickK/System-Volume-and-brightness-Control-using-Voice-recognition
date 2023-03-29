@@ -13,6 +13,7 @@ def BrightnessIncrease():
     else:
         current_brightness[0] += 10
     sbc.set_brightness(current_brightness[0])
+    V_OP.speech("Brightness Increased")
 
 # Code for Decrease Brightness
 def BrightnessDecrease():
@@ -25,8 +26,9 @@ def BrightnessDecrease():
         current_brightness[0] = 0
     else:
         current_brightness[0] -= 10
-    
     sbc.set_brightness(current_brightness[0]) 
+    V_OP.speech("Brightness decreased") 
+    
 def BrightnessHalf():
     current_brightness = sbc.get_brightness()
     if(current_brightness[0] == 50):
@@ -34,6 +36,7 @@ def BrightnessHalf():
         return
     current_brightness[0] = 50
     sbc.set_brightness(current_brightness[0])
+    V_OP.speech("Brightness set to half level!")
 def BrightnessFull():
     current_brightness = sbc.get_brightness()
     if(current_brightness[0] == 100):
@@ -41,6 +44,7 @@ def BrightnessFull():
         return
     current_brightness[0] = 100
     sbc.set_brightness(current_brightness[0])
+    V_OP.speech("Brightness set to maximum")
 def BrightnessFullLow():
     if(current_brightness[0] == 0):
         V_OP.speech("Brightness is already at its minimum level!")
@@ -48,6 +52,7 @@ def BrightnessFullLow():
     current_brightness = sbc.get_brightness()
     current_brightness[0] = 0
     sbc.set_brightness(current_brightness[0])
+    V_OP.speech("Brightness set to minimum")
 def SayCurrentBrightnessLevel():
     current_brightness = sbc.get_brightness()
     V_OP.speech("Current brightness level is "+ str(current_brightness[0]))
@@ -58,3 +63,4 @@ def SayCurrentBrightnessLevel():
 # current_brightness = sbc.get_brightness()
 # print("Brightness after:",current_brightness)
 # BrightnessDecrease()
+# BrightnessIncrease()

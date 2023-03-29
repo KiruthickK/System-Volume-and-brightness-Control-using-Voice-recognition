@@ -30,6 +30,7 @@ def VolumeIncrease():
     else:
         currentVolumeDb += 1
     volume.SetMasterVolumeLevel(currentVolumeDb, None)
+    V_OP.speech("volume Increased")
 
 # Code for Volume Decrease
 def VolumeDecrease():
@@ -51,10 +52,12 @@ def VolumeDecrease():
     else:
         currentVolumeDb -= 1
     volume.SetMasterVolumeLevel(currentVolumeDb, None)
+    V_OP.speech("volume Decreased") 
 
 # Code for Volume Mute, unmute and maximum volume
 def VolumeMute():
     #volume.SetMute(0, None)
+    V_OP.speech("System Volume is going to get muted!")
     global VolumeLevelWhileMuting
     VolumeLevelWhileMuting = volume.GetMasterVolumeLevel()
     if VolumeLevelWhileMuting == -65.25:
@@ -62,6 +65,7 @@ def VolumeMute():
         return
     currentVolumeDb = -65.25
     volume.SetMasterVolumeLevel(currentVolumeDb, None)
+    
 def VolumeFull():
     currentVolumeDb = volume.GetMasterVolumeLevel()
     if currentVolumeDb == 0.0:
@@ -69,13 +73,15 @@ def VolumeFull():
         return
     currentVolumeDb = 0.0
     volume.SetMasterVolumeLevel(currentVolumeDb, None)
-def UnMute():
+    V_OP.speech("volume set to maximum level")
+def UnMute(text):
     currentVolumeDb = volume.GetMasterVolumeLevel()
     # currentVolumeDb = 0.0
     if currentVolumeDb > -65.25:
         V_OP.speech("Volume is already unmuted!")
         return
     volume.SetMasterVolumeLevel(VolumeLevelWhileMuting, None)
+    V_OP.speech(text+" Done successfully!")
 def VolumeHalf():
     currentVolumeDb = volume.GetMasterVolumeLevel()
     if currentVolumeDb == 10.4:
@@ -83,6 +89,7 @@ def VolumeHalf():
         return
     currentVolumeDb = -10.4
     volume.SetMasterVolumeLevel(currentVolumeDb, None)
+    V_OP.speech("volume set to half level!")
 def SayCurrentVolume():
     currentVolumeDb = volume.GetMasterVolumeLevel()
     if(currentVolumeDb < 0.0):

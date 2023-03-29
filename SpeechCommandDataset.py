@@ -44,7 +44,7 @@ Stop = ["stop","top","pause","pause the program"]
 start = ["start","start services","start service","continue","continue the program"]
 stopCode = ["exit code","stop the program","exit","exit program","close the service","end the service",
             "terminate the program","exit the program"]
-Yes = ["yes","yes stop the service","yes end the service","yes stop the program","yeah i want","yeah","sure"]
+Yes = ["yes","yes stop the service","yes end the service","yes stop the program","yeah i want","yeah","sure","s","i do"]
 No = ["no","i said by mistake","no i dont want","no i said by mistake","no i said by mistake sorry","nope"]
 C_Bri_Level = ["tell me the current brightness level","current brightness level","tell the brightness level",
                "tell brightness level","tell me the current brightness","current brightness"]
