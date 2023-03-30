@@ -9,12 +9,12 @@ def DesignPrinter():
     width = shutil.get_terminal_size().columns
     width = width/2
     width = int(width)-1
-    print(((Fore.WHITE +"="+Fore.RED +"#") * width+"=")+ Style.RESET_ALL)
+    print(((Fore.WHITE +"="+Fore.RED +"#") * width+Fore.WHITE+"=")+ Style.RESET_ALL)
     # print(("=#" * width)+"=")
 def PrintRightSide(text):
     # Get the current console width
     width = shutil.get_terminal_size().columns
     padding = width - len(text)
     print(" " * padding + text)
-DesignPrinter()
+# DesignPrinter()
 # SingleLinePrinter()
