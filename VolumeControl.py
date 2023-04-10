@@ -84,7 +84,7 @@ def UnMute(text):
     V_OP.speech(text+" Done successfully!")
 def VolumeHalf():
     currentVolumeDb = volume.GetMasterVolumeLevel()
-    if currentVolumeDb == 10.4:
+    if currentVolumeDb == -10.4:
         V_OP.speech("Volume is already at its half level!")
         return
     currentVolumeDb = -10.4
