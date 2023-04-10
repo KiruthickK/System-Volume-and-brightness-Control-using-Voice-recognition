@@ -45,7 +45,7 @@ while(True):
             if(text in DS.Yes):
                 V_OP.speech("Thank you for using our service. use again!")
                 UH.DesignPrinter()
-                t.sleep(3)
+                t.sleep(1.5)
                 exit()
             elif(text in DS.No):
                 V_OP.speech("Listening for voice commands")
@@ -112,7 +112,7 @@ while(True):
                 if(text in DS.Yes):
                     V_OP.speech("Thank you for using our service. use again!")
                     UH.DesignPrinter()
-                    t.sleep(3)
+                    t.sleep(1.5)
                     exit()
                 elif(text in DS.No):
                     V_OP.speech("Listening for voice commands")
