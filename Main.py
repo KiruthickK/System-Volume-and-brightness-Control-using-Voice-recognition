@@ -127,10 +127,13 @@ while(True):
             V_OP.speech("Check your voice command. Did you just said "+text+"?")
             matches = DS.MatchCommand(text)
             # print("Do you mean ")
+            n = len(matches)
+            if(len(matches) > 5):
+                n = 5
             if(len(matches) != 0):
                 V_OP.speech("Do you mean ")
-            for i in range(0,len(matches)):
-                MediateText = (i == len(matches) - 1) and "." or ", or"
+            for i in range(0,n):
+                MediateText = (i == (n - 1)) and "." or ", or"
                 V_OP.speech(matches[i] + MediateText)
                 # print(matches[i] + MediateText)
             # print("If you said anything by mistake or you are talking to someone else, you can simply pause this program by saying 'pause' or 'stop'")
