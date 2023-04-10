@@ -4,6 +4,7 @@ import VolumeControl as VC
 import BrightnessControl as BC
 import SpeechCommandDataset as DS
 import UsabilityHelpers as UH
+import time as t
 
 #driver program to run this project/application
 FlagForServiceStart = False
@@ -44,6 +45,7 @@ while(True):
             if(text in DS.Yes):
                 V_OP.speech("Thank you for using our service. use again!")
                 UH.DesignPrinter()
+                t.sleep(3)
                 exit()
             elif(text in DS.No):
                 V_OP.speech("Listening for voice commands")
@@ -110,6 +112,7 @@ while(True):
                 if(text in DS.Yes):
                     V_OP.speech("Thank you for using our service. use again!")
                     UH.DesignPrinter()
+                    t.sleep(3)
                     exit()
                 elif(text in DS.No):
                     V_OP.speech("Listening for voice commands")
