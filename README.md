@@ -6,3 +6,4 @@
 <li>pip install screen_brightness_control</li><br>
 <li>pip install pyaudio</li><br>
 </ul>
+<h2>Run Main.py to run this project </h2>
