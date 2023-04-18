@@ -3,7 +3,9 @@
 <ul>
 <li>pip install speechrecognition</li><br>
 <li>pip install pyttsx3</li><br>
-<li>pip install screen_brightness_control</li><br>
+<li>pip install pycaw</li><br>
+<li>pip install comtypes</li><br>
+<li>pip install ctypes</li><br>
 <li>pip install pyaudio</li><br>
 </ul>
 <h2>Run Main.py to run this project </h2>
